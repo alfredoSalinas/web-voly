@@ -1,8 +1,28 @@
 import React from "react";
 import { Container, Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { Outlet, Link } from "react-router-dom";
+import authService from "../services/auth.service";
+import { useSelector, useDispatch } from 'react-redux'
+import authAction from "../store/actions/auth.action";
 
 const Header=()=>{
+    const dispatch = useDispatch()
+    const authData = useSelector(state=>state.auth.user)
+
+    const autenticar = ()=>{
+        authService.autenticar((res)=>{
+            console.log(res.displayName)
+            dispatch(authAction.login(res))
+        })
+    }
+
+    const salir =()=>{
+        authService.salir((res)=>{
+            console.log(res)
+            dispatch(authAction.logout())
+            dispatch(authAction.isadmin(false))
+        })
+    }
 
     return(
         <>
@@ -13,9 +33,19 @@ const Header=()=>{
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                     <NavDropdown title="Admin" id="collasible-nav-dropdown">
+                        <NavDropdown.Item as={Link} to='/adminCampeonato' >Campeonato</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to='/adminEquipos' >Equipos</NavDropdown.Item>
-                        
+                        <NavDropdown.Item as={Link} to='/adminJugador' >Jugador</NavDropdown.Item>
                     </NavDropdown>
+                    </Nav>
+                    <Nav>
+                        { authData ? 
+                            <NavDropdown title={authData.displayName} id="collasible-nav-dropdown">
+                                <NavDropdown.Item onClick={salir} >logout</NavDropdown.Item>    
+                            </NavDropdown>
+                            : <Nav.Link onClick={autenticar} >login</Nav.Link>
+                        }
+                    
                     </Nav>
                     </Navbar.Collapse>
                 </Container>
