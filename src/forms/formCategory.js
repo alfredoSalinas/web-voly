@@ -5,14 +5,12 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 
 const schema = Yup.object().shape({
-    nombre: Yup.string().required(),
     categoria: Yup.string().required(),
 })
 
-const FormTeam=({team, createTeam, handleClose})=>{
+const FormCategory=({category, createCategory, handleClose})=>{
     const defaultValues = {
-        nombre: team ? team.nombre : '',
-        categoria: team ? team.categoria : '',
+        categoria: category ? category.categoria : '',
       }
     const { control, handleSubmit } = useForm({
         defaultValues,
@@ -23,16 +21,7 @@ const FormTeam=({team, createTeam, handleClose})=>{
 
     return(
         <div>
-            <Form onSubmit={handleSubmit((d)=>createTeam(d))}>
-                <Form.Group className="mb-3" controlId="formBasicNombre">
-                    <Controller
-                        render={({ field }) => <Form.Control type="text" placeholder="Nombre" {...field} />}
-                        name="nombre"
-                        control={control}
-                        defaultValue={defaultValues.nombre}
-                    />
-                    <Form.Label>Nombre</Form.Label>
-                </Form.Group>
+            <Form onSubmit={handleSubmit((d)=>createCategory(d))}>
                 <Form.Group className="mb-3" controlId="formBasicCategoria">
                     <Controller
                         render={({ field }) => <Form.Control type="text" placeholder="Categoria" {...field} />}
@@ -53,4 +42,4 @@ const FormTeam=({team, createTeam, handleClose})=>{
     )
 }
 
-export default FormTeam
+export default FormCategory

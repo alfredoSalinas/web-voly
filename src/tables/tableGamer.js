@@ -1,7 +1,6 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 
-
 const TableGamer = (props)=>{
 
     return(

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Table } from "react-bootstrap";
 
-const TableTeam=(props)=>{
+const TableChampionships = (props)=>{
 
     return(
         <Table striped bordered hover>
@@ -12,12 +12,11 @@ const TableTeam=(props)=>{
     </tr>
   </thead>
   <tbody>
-    {props.teams && props.teams.map((item, i)=>
+    {props.championship && props.championship.map((item, i)=>
       <tr key={i}>
       <td>{ item.nombre }</td>
       <td>
-        <Button onClick={()=>props.deleteItem(item)} >Delete</Button>
-        <Button onClick={()=>props.editItem(item)}>edit</Button>  
+         <Button onClick={()=>props.selChampionship(item)} >Seleccionar</Button>
       </td>
     </tr>
     )}
@@ -27,4 +26,4 @@ const TableTeam=(props)=>{
     )
 }
 
-export default TableTeam
+export default TableChampionships

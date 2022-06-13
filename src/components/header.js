@@ -1,9 +1,10 @@
 import React from "react";
-import { Container, Navbar, NavDropdown, Nav } from "react-bootstrap";
+import { Container, Navbar, NavDropdown, Nav, Row, Col } from "react-bootstrap";
 import { Outlet, Link } from "react-router-dom";
 import authService from "../services/auth.service";
 import { useSelector, useDispatch } from 'react-redux'
 import authAction from "../store/actions/auth.action";
+import SideBar from "./sideBar";
 
 const Header=()=>{
     const dispatch = useDispatch()
@@ -28,15 +29,10 @@ const Header=()=>{
         <>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand>Voley</Navbar.Brand>
+                    <Navbar.Brand>ASOCIACION DEPARTAMENTAL DE VOLEIBOL DE CHUQUISACA</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
-                    <NavDropdown title="Admin" id="collasible-nav-dropdown">
-                        <NavDropdown.Item as={Link} to='/adminCampeonato' >Campeonato</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to='/adminEquipos' >Equipos</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to='/adminJugador' >Jugador</NavDropdown.Item>
-                    </NavDropdown>
                     </Nav>
                     <Nav>
                         { authData ? 
@@ -50,7 +46,14 @@ const Header=()=>{
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Outlet/>
+            <Row>
+                <Col xs={3}>
+                    <SideBar/>
+                </Col>
+                <Col>
+                    <Outlet/>
+                </Col>
+            </Row>
         </>
     )
 }

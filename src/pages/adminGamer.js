@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import useCategory from "../hooks/useCategory";
 import useGamer from "../hooks/useGamer";
 import ModalDelete from "../modals/modalDelete";
 import ModalError from "../modals/modalError";
@@ -12,6 +13,7 @@ const AdminGamer =()=>{
     const [showError, setShowError] = useState(false)
     const [gamer, setGamer] = useState(null)
     const [gamers] = useGamer()
+    const [categories] = useCategory()
 
     const handleShow =(item)=>{
         if(item === null){
@@ -43,11 +45,14 @@ const AdminGamer =()=>{
             const dataGamer={
                 ...data
             }
+            console.log(dataGamer)
+            /*
             gamerService.createGamer(dataGamer).then(()=>{
                 console.log('ok')
             }).catch(()=>{
                 setShowError(true)
             })
+            */
         }
         setShow(false)
     }
@@ -82,7 +87,7 @@ const AdminGamer =()=>{
                     <p className="h3">Jugadores</p>
                     </div>
                     <div className="col text-end">
-                    <button type="button" className="btn btn-primary" onClick={()=>handleShow(null)}>Añadir Estudiante</button>
+                    <button type="button" className="btn btn-primary" onClick={()=>handleShow(null)}>Añadir Jugador</button>
                     </div>
                 </div>
                 

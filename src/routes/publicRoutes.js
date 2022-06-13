@@ -8,6 +8,9 @@ import authService from '../services/auth.service'
 import authAction from '../store/actions/auth.action'
 import adminService from '../services/admin.service'
 import AdminChampionship from '../pages/adminChampionship'
+import ProtectedRoute from './protectedRoute'
+import Home from '../pages/home'
+import AdminCategories from '../pages/adminCategories'
 
 export const PublicRoutes=()=>{
     const dispatch = useDispatch()
@@ -27,9 +30,11 @@ export const PublicRoutes=()=>{
     return(
         <Routes>
             <Route path="/" element={ <Header /> } >
-                <Route path='/adminEquipos' element={ <AdminTeam /> } />
-                <Route path='/adminJugador' element={ <AdminGamer /> } />
-                <Route path='/adminCampeonato' element={ <AdminChampionship /> } />
+                <Route path='/' element={<Home />} />
+                <Route path='/adminCategorias' element={ <ProtectedRoute><AdminCategories /></ProtectedRoute> } />
+                <Route path='/adminEquipos' element={<ProtectedRoute> <AdminTeam /> </ProtectedRoute> } />
+                <Route path='/adminJugador' element={ <ProtectedRoute><AdminGamer /></ProtectedRoute> } />
+                <Route path='/adminCampeonato' element={ <ProtectedRoute><AdminChampionship /></ProtectedRoute> } />
             </Route>
         </Routes>
     )
