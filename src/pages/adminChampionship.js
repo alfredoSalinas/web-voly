@@ -83,6 +83,10 @@ const AdminChampionship=()=>{
         setShowError(false)
     }
 
+    const handleSelect=(item)=>{
+        console.log(item)
+    }
+
     return (
         <Container>
             <div className="card">
@@ -104,7 +108,8 @@ const AdminChampionship=()=>{
             <TableChampionship 
                 championship={championships}
                 deleteItem={handleShowDelete} 
-                editItem={handleShow}  
+                editItem={handleShow}
+                selItem={handleSelect}  
             />
             <ModalDelete 
                 show={showDelete} 

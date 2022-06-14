@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import gamerService from "../services/gamer.service";
 import categoryService from "../services/category.service"
 
 const useCategory=()=>{

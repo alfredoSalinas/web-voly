@@ -16,8 +16,9 @@ const TableChampionship = (props)=>{
       <tr key={i}>
       <td>{ item.nombre }</td>
       <td>
-        <Button onClick={()=>props.deleteItem(item)} >Delete</Button>
-        <Button onClick={()=>props.editItem(item)}>edit</Button>  
+        <Button variant="danger" onClick={()=>props.deleteItem(item)} >Delete</Button>
+        <Button variant="secondary" onClick={()=>props.editItem(item)}>edit</Button>
+        <Button variant="info" onClick={()=>props.selItem(item)}>sel</Button>  
       </td>
     </tr>
     )}

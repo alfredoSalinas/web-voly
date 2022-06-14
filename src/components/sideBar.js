@@ -16,6 +16,9 @@ const SideBar=()=>{
                 <Card.Body>
                     <Tab.Container defaultActiveKey='/adminJugador'>
                     <ListGroup>
+                        <ListGroup.Item action as={Link} to='/adminEquipos'>
+                            Equipos
+                        </ListGroup.Item>
                         <ListGroup.Item action as={Link} to='/adminCategorias'>
                             Categorias
                         </ListGroup.Item>
@@ -24,9 +27,6 @@ const SideBar=()=>{
                         </ListGroup.Item>
                         <ListGroup.Item action as={Link} to='/adminCampeonato'>
                             Campeonatos
-                        </ListGroup.Item>
-                        <ListGroup.Item action as={Link} to='/adminEquipos'>
-                            Equipos
                         </ListGroup.Item>
                     </ListGroup>
                     </Tab.Container>

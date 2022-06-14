@@ -20,8 +20,8 @@ const TableGamer = (props)=>{
       <td>{ item.nombre }</td>
       <td>{ item.apellidos }</td>
       <td>
-        <Button onClick={()=>props.deleteItem(item)} >Delete</Button>
-        <Button onClick={()=>props.editItem(item)}>edit</Button>  
+        <Button variant="danger" onClick={()=>props.deleteItem(item)} >Delete</Button>
+        <Button variant="info" onClick={()=>props.editItem(item)}>edit</Button>  
       </td>
     </tr>
     )}

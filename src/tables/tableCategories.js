@@ -17,8 +17,8 @@ const TableCategories=({categories, deleteItem, editItem})=>{
                         <tr key={i}>
                             <td>{item.categoria}</td>
                             <td>
-                                <Button onClick={()=>deleteItem(item)} >Delete</Button>
-                                <Button onClick={()=>editItem(item)}>edit</Button>  
+                                <Button variant="danger" onClick={()=>deleteItem(item)} >Delete</Button>
+                                <Button variant="info" onClick={()=>editItem(item)}>edit</Button>  
                             </td>
                         </tr>
                     ))

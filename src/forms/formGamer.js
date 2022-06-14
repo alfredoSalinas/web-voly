@@ -1,6 +1,7 @@
 import React from "react";
 import Select from 'react-select'
 import { Accordion, Button, Form } from "react-bootstrap";
+import useOptGamer from "../hooks/useOptGamer";
 import { Controller, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
@@ -18,6 +19,7 @@ const schema = Yup.object().shape({
 })
 
 const FormGamer=({gamer, createGamer, handleClose, categories})=>{
+    const [optTeam, optCategory, optRamas] = useOptGamer()
     const defaultValues = {
         carnet: gamer ? gamer.carnet : '',
         nombre: gamer ? gamer.nombre : '',
@@ -49,19 +51,6 @@ const FormGamer=({gamer, createGamer, handleClose, categories})=>{
         }
         console.log(gamer)
     }
-
-    const equipos=[
-        {label: 'Dinamo', value: 'Dinamo'}
-    ]
-
-    const clubes=[
-        {label: 'Honor', value: 'Honor'}
-    ]
-
-    const ramas=[
-        {label: 'Damas', value: 'Damas'},
-        {label: 'Varones', value: 'Varones'}
-    ]
 
     return(
         <div>
@@ -125,7 +114,7 @@ const FormGamer=({gamer, createGamer, handleClose, categories})=>{
                 <h5>Club :</h5>        
                 <Form.Group className="mb-3" controlId="formBasicClub">
                     <Controller
-                        render={({ field }) => <Select options={clubes} {...field} />}
+                        render={({ field }) => <Select options={optTeam} {...field} />}
                         name="club"
                         control={control}
                         defaultValue={defaultValues.club}
@@ -134,7 +123,7 @@ const FormGamer=({gamer, createGamer, handleClose, categories})=>{
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicCategoria">
                     <Controller
-                        render={({ field }) => <Select options={categories} {...field} />}
+                        render={({ field }) => <Select options={optCategory} {...field} />}
                         name="categoria"
                         control={control}
                         defaultValue={defaultValues.categoria}
@@ -143,7 +132,7 @@ const FormGamer=({gamer, createGamer, handleClose, categories})=>{
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicRama">
                     <Controller
-                        render={({ field }) => <Select options={ramas} {...field} />}
+                        render={({ field }) => <Select options={optRamas} {...field} />}
                         name="rama"
                         control={control}
                         defaultValue={defaultValues.rama}
