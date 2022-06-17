@@ -10,6 +10,9 @@ const TableGamer = (props)=>{
       <th>Carnet</th>
       <th>Nombre</th>
       <th>Apellidos</th>
+      <th>Equipo</th>
+      <th>Rama</th>
+      <th>Categoria</th>
       <th></th>
     </tr>
   </thead>
@@ -19,6 +22,9 @@ const TableGamer = (props)=>{
       <td>{item.carnet}</td>
       <td>{ item.nombre }</td>
       <td>{ item.apellidos }</td>
+      <td>{ item.club }</td>
+      <td>{ item.rama }</td>
+      <td>{ item.categoria }</td>
       <td>
         <Button variant="danger" onClick={()=>props.deleteItem(item)} >Delete</Button>
         <Button variant="info" onClick={()=>props.editItem(item)}>edit</Button>  

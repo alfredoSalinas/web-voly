@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import useCategory from "../hooks/useCategory";
 import useGamer from "../hooks/useGamer";
 import ModalDelete from "../modals/modalDelete";
@@ -12,7 +13,13 @@ const AdminGamer =()=>{
     const [showDelete, setShowDelete] = useState(false)
     const [showError, setShowError] = useState(false)
     const [gamer, setGamer] = useState(null)
-    const [gamers] = useGamer()
+    const [gamers, 
+        pagination, 
+        prevProducts,
+        nextProducts,
+        search,
+        setSearch,
+        setCurrentPage,] = useGamer()
     const [categories] = useCategory()
 
     const handleShow =(item)=>{
@@ -45,14 +52,13 @@ const AdminGamer =()=>{
             const dataGamer={
                 ...data
             }
-            console.log(dataGamer)
-            /*
+            
             gamerService.createGamer(dataGamer).then(()=>{
                 console.log('ok')
             }).catch(()=>{
                 setShowError(true)
             })
-            */
+            
         }
         setShow(false)
     }
@@ -69,7 +75,8 @@ const AdminGamer =()=>{
     const deleteItem=()=>{
         gamerService.deleteGamer(gamer.id).then(()=>{
             console.log('ok')
-        }).catch(()=>{
+        }).catch((e)=>{
+            console.log(e)
             setShowError(true)
         })
         setShowDelete(false)
@@ -78,6 +85,12 @@ const AdminGamer =()=>{
     const handleCloseError=()=>{
         setShowError(false)
     }
+
+    const onSearchChange =({target})=>{
+        setCurrentPage(0)
+        setSearch(target.value)
+    }
+
 
     return(
         <div className='container mt-3'>
@@ -98,10 +111,17 @@ const AdminGamer =()=>{
                 createGamer={createGamer}
                 gamer={gamer}
             />
+            <input 
+                        type='text'
+                        value={search}
+                        onChange={onSearchChange}        
+                    />
             <TableGamer 
-                gamers={gamers} 
+                gamers={pagination()} 
                 deleteItem={handleShowDelete} 
                 editItem={handleShow}  />
+                <Button onClick={prevProducts}>Prev</Button>
+                <Button onClick={nextProducts}>Nex</Button>
             <ModalDelete 
                 show={showDelete} 
                 handleClose={handleCloseDelete} 

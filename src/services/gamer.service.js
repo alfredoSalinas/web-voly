@@ -10,8 +10,10 @@ function getAllGamers(callback){
     })
 }
 
-const deleteGamer = async (id)=>{
-    await deleteDoc(doc(db, gamers, id))
+const deleteGamer = (id)=>{
+    console.log(id)
+    //await deleteDoc(doc(db, gamers, id))
+    return gamers.doc(id).delete()
 }
 
 const createGamer = (data) => {

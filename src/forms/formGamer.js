@@ -45,11 +45,12 @@ const FormGamer=({gamer, createGamer, handleClose, categories})=>{
             apellidos: d.apellidos,
             fecha_nacimiento: d.fecha_nacimiento,
             domicilio: d.domicilio,
+            telefono: d.telefono,
             club: d.club.value,
             categoria: d.categoria.value,
             rama: d.rama.value,
         }
-        console.log(gamer)
+        createGamer(gamer)
     }
 
     return(
@@ -132,10 +133,13 @@ const FormGamer=({gamer, createGamer, handleClose, categories})=>{
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicRama">
                     <Controller
-                        render={({ field }) => <Select options={optRamas} {...field} />}
+                        render={({ field }) => <Select 
+                            options={optRamas}
+                            {...field} 
+                            />}
                         name="rama"
                         control={control}
-                        defaultValue={defaultValues.rama}
+                        defaultValue={optRamas[0]}
                     />
                     <Form.Label>Rama</Form.Label>
                 </Form.Group>

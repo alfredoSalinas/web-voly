@@ -6,7 +6,6 @@ import * as Yup from 'yup'
 
 const schema = Yup.object().shape({
     nombre: Yup.string().required(),
-    categoria: Yup.string().required(),
 })
 
 const FormTeam=({team, createTeam, handleClose})=>{
@@ -32,15 +31,6 @@ const FormTeam=({team, createTeam, handleClose})=>{
                         defaultValue={defaultValues.nombre}
                     />
                     <Form.Label>Nombre</Form.Label>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCategoria">
-                    <Controller
-                        render={({ field }) => <Form.Control type="text" placeholder="Categoria" {...field} />}
-                        name="categoria"
-                        control={control}
-                        defaultValue={defaultValues.categoria}
-                    />
-                    <Form.Label>Categoria</Form.Label>
                 </Form.Group>
                 <Button variant="secondary" onClick={handleClose}>
                     Close
