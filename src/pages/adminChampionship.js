@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
+import Fixture from "../helpers/fixture";
 import ModalChampionship from "../modals/modalChampionship";
 import ModalDelete from "../modals/modalDelete";
 import ModalError from "../modals/modalError";
 import championshipsService from "../services/championships.service";
+import teamService from "../services/team.service";
 import TableChampionship from "../tables/tableChampionship";
 
 const AdminChampionship=()=>{
@@ -12,6 +14,7 @@ const AdminChampionship=()=>{
     const [showDelete, setShowDelete] = useState(false)
     const [showError, setShowError] = useState(false)
     const [championships, setChampionships] = useState(null)
+    const [teams, setTeams] = useState(null)
 
     useEffect(()=>{
         championshipsService.getAllChampionships((res)=>{
@@ -20,6 +23,12 @@ const AdminChampionship=()=>{
             })
             console.log(resChampionship)
             setChampionships(resChampionship)
+        })
+        teamService.getAllTeams((res)=>{
+            const resTeams = res.map(t=>{
+                return {id: t.id, ...t.data()}
+            })
+            setTeams(resTeams)
         })
     },[])
 
@@ -89,6 +98,8 @@ const AdminChampionship=()=>{
 
     return (
         <Container>
+            <Fixture teams = {teams} />
+            <h1>Hola a todos</h1>
             <div className="card">
                 <div className="row">
                     <div className="col">

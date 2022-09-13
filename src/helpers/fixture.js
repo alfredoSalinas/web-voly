@@ -3,6 +3,7 @@ import { Container, Button } from "react-bootstrap";
 
 
 function combine(list) {
+    
     var pairs = new Array((list.length * (list.length - 1)) / 2),
     pos = 0;
     for (var i = 0; i < list.length; i++) {
@@ -10,6 +11,7 @@ function combine(list) {
             pairs[pos++] = [list[i], list[j]];
         }
     }
+
     return pairs;
 }
 
@@ -46,7 +48,7 @@ for (let i = 0; i < equipos.length; i++) {
 
 const result = combine(equipos);
 
-const fechas =()=>{
+const fechas =(pares)=>{
     const partidos = []
     for (let e = 0; e < equipos.length -1; e++) {
         const element = equipos[e];
@@ -54,12 +56,12 @@ const fechas =()=>{
         const fp = []
         let rePar = 0
         for (let i = 0; i < 4; i++) {
-            const par = result.splice(rePar, 1)
+            const par = pares.splice(rePar, 1)
             const parF = par[0] 
             f.push(par)
             fp.push(parF)
-            for (let equipo = 0; equipo < result.length; equipo++) {
-                const element = result[equipo];
+            for (let equipo = 0; equipo < pares.length; equipo++) {
+                const element = pares[equipo];
                 let r = compPares(f, element)
                 if(r === false){
                     //console.log('par', equipo, ' ', r)
@@ -82,17 +84,18 @@ result.map(el=>{
 })
 */
 
-const mostrarF=()=>{
-    const pares = combine(equipos)
-    const fechas1 = fechas()
+const mostrarF=(teams)=>{
+    const pares = combine(teams)
+    console.log('pares : ',pares)
+    const fechas1 = fechas(pares)
     return fechas1
 }
 
-const Fixture =()=>{
+const Fixture =(props)=>{
     const [resultado, setResultado] = useState([])
     
     const mostrar =()=>{
-        const f = mostrarF()
+        const f = mostrarF(props.teams)
         setResultado(f)
     }
 
@@ -107,7 +110,7 @@ const Fixture =()=>{
                             el.map((f, i)=>(
                                 <div key={i}>
                                     <h4>Hora</h4>
-                                    <pre>{JSON.stringify(f, null, 2)}</pre>
+                                    <pre>{JSON.stringify(f[0].nombre, null, 2)} {JSON.stringify(f[1].nombre, null, 2)}</pre>
                                 </div>
                             ))
                         }
