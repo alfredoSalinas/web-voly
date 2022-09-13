@@ -102,21 +102,33 @@ const Fixture =(props)=>{
     return(
         <Container>
             <Button onClick={mostrar} >ver</Button>
+            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                    <tr>
+                        <th>Equipo 1</th>
+                        <th>Puntos</th>
+                        <th>Equipo 2</th>
+                        <th>Puntos</th>
+                    </tr>
+                </thead>
             {
                 resultado.map((el, fi)=>(
-                    <div key={fi}>
+                    <tbody key={fi}>
                         <h3>fecha {fi + 1}</h3>
                         {
                             el.map((f, i)=>(
-                                <div key={i}>
-                                    <h4>Hora</h4>
-                                    <pre>{JSON.stringify(f[0].nombre, null, 2)} {JSON.stringify(f[1].nombre, null, 2)}</pre>
-                                </div>
+                                <tr key={i}>
+                                    <td style={{border: '1px solid grey' }} >{ f[0].nombre }</td>
+                                    <td style={{border: '1px solid grey' }} ></td>
+                                    <td style={{border: '1px solid grey' }} >{ f[1].nombre }</td>
+                                    <td style={{border: '1px solid grey' }} ></td>
+                                </tr>
                             ))
                         }
-                    </div>    
+                    </tbody>    
                 ))
             }
+            </table>
         </Container>
     )
 }
