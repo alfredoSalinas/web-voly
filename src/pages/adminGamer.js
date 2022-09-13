@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import useCategory from "../hooks/useCategory";
 import useGamer from "../hooks/useGamer";
+import useOptGamer from "../hooks/useOptGamer";
 import ModalDelete from "../modals/modalDelete";
 import ModalError from "../modals/modalError";
 import ModalGamer from "../modals/modalGamer";
@@ -9,6 +10,7 @@ import gamerService from "../services/gamer.service";
 import TableGamer from "../tables/tableGamer";
 
 const AdminGamer =()=>{
+    const [optTeam, optCategory, optRamas] = useOptGamer()
     const [show, setShow] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
     const [showError, setShowError] = useState(false)
@@ -42,6 +44,12 @@ const AdminGamer =()=>{
                 carnet: data.carnet,
                 nombre: data.nombre,
                 apellidos: data.apellidos,
+                fecha_nacimiento: data.fecha_nacimiento,
+                domicilio: data.domicilio,
+                telefono: data.telefono,
+                club: data.club,
+                categoria: data.categoria,
+                rama: data.rama,
             }
             gamerService.updateGamer(gamer.id, dataGamer).then(()=>{
                 console.log('ok')
@@ -110,6 +118,9 @@ const AdminGamer =()=>{
                 handleClose={handleClose} 
                 createGamer={createGamer}
                 gamer={gamer}
+                optTeam={optTeam}
+                optCategory={optCategory}
+                optRamas={optRamas}
             />
             <input 
                         type='text'

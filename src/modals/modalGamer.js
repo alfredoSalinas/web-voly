@@ -2,7 +2,7 @@ import React from "react";
 import { Modal } from "react-bootstrap";
 import FormGamer from "../forms/formGamer";
 
-const ModalGamer= ({show, handleClose, createGamer, gamer, categories})=>{
+const ModalGamer= ({show, handleClose, createGamer, gamer, optTeam, optCategory, optRamas})=>{
     
     return(
         <Modal show={show} onHide={handleClose} >
@@ -14,7 +14,9 @@ const ModalGamer= ({show, handleClose, createGamer, gamer, categories})=>{
                     gamer={gamer} 
                     handleClose={handleClose} 
                     createGamer={createGamer} 
-                    categories={categories} 
+                    optTeam={optTeam}
+                    optCategory={optCategory}
+                    optRamas={optRamas}
                 />
             </Modal.Body>
         </Modal>
